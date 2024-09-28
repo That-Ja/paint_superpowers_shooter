@@ -18,17 +18,17 @@ func _ready():
 	myself_positionY_save = self.position.y
 	myself_positionZ_save = self.position.z
 	# Connect the signal for when a body enters or exits
-	$"../..".connect("body_entered", Callable(self, "_on_body_entered"))
-	$"../..".connect("body_exited", Callable(self, "_on_body_exited"))
+	#$"../..".connect("body_entered", Callable(self, "_on_body_entered"))
+	#$"../..".connect("body_exited", Callable(self, "_on_body_exited"))
 
 # This function is called when another body enters the area
-func _on_body_entered(_body):
+func _on_pedro_el_areas_body_entered(body):
 	on_touching_walls = true
 	#print("behind a wall owo!")
 	touching_something()
 
 # This function is called when another body exits the area
-func _on_body_exited(_body):
+func _on_pedro_el_areas_body_exited(body):
 	on_touching_walls = false
 	# Move the camera when it exits the area
 	if not on_touching_walls:

@@ -81,6 +81,8 @@ script = ExtResource("6_5gpkm")
 [node name="Burrow_zone" parent="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box/Paint_Emiter/Global_config" instance=ExtResource("7_0u13j")]
 
 [connection signal="shooting_signal" from="CharacterBody3D" to="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box/Paint_Emiter" method="_on_character_body_3d_shooting_signal"]
+[connection signal="body_entered" from="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/PedroElAreas" to="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Camera3D" method="_on_pedro_el_areas_body_entered"]
+[connection signal="body_exited" from="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/PedroElAreas" to="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Camera3D" method="_on_pedro_el_areas_body_exited"]
 [connection signal="extra_box_pos" from="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Camera3D" to="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box" method="_on_camera_3d_extra_box_pos"]
 [connection signal="paint_stain_notifier" from="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box/Paint_Emiter" to="CharacterBody3D" method="_on_paint_emiter_paint_stain_notifier"]
 [connection signal="timeout" from="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box/Paint_Emiter/Timer" to="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box/Paint_Emiter" method="_on_timer_timeout"]
