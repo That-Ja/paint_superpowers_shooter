@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://0d6106vbc6ec"]
+
+[ext_resource type="Script" path="res://life_bar.gd" id="1_r3m2p"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1143.0
+offset_bottom = 650.0
+
+[node name="Life_bar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_r3m2p")
+
+[node name="Shield_bar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

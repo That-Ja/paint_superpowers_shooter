@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://u0kjhgekl4ly"]
+
+[ext_resource type="Script" path="res://Characters/Placeholder_Char/Files/burrow_zone.gd" id="1_e6hov"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2g6a7"]
+margin = 0.0
+
+[node name="Burrow_zone" type="Area3D"]
+monitorable = false
+script = ExtResource("1_e6hov")
+
+[node name="Burrow_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.565, 0, 0, 0, 0.565, 0, 0, 0, 0.565, 0, 0, 0)
+shape = SubResource("BoxShape3D_2g6a7")
+
+[node name="Burrow_Box_app" type="Timer" parent="."]
+wait_time = 0.69
+
+[node name="Burrow_affliction" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Burrow_Box_app" to="." method="_on_burrow_box_app_timeout"]

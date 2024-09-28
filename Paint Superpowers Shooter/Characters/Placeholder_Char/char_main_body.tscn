@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://bh712bbufujm3"]
+
+[ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/Camera3D.gd" id="1_yaue3"]
+[ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/aim_box.gd" id="2_ovn08"]
+[ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/pink_ink.gd" id="3_esa6q"]
+[ext_resource type="PackedScene" uid="uid://dthh0oakpok3h" path="res://Characters/Placeholder_Char/Files/paint_scene.tscn" id="4_6p4li"]
+[ext_resource type="Script" path="res://Code/config.gd" id="5_jiunf"]
+[ext_resource type="PackedScene" uid="uid://u0kjhgekl4ly" path="res://Characters/Placeholder_Char/burrow_zone.tscn" id="6_5pbn7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vqkbh"]
+size = Vector3(0.303848, 0.636963, 0.19841)
+
+[node name="Char_main_body" type="CSGCylinder3D"]
+transform = Transform3D(2.7027, 0, 0, 0, 2.7027, 0, 0, 0, 2.7027, 0, 0, 0)
+radius = 0.154
+height = 0.75
+
+[node name="Hand" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.105, 0, 0, 0, 0.0740001, 0, 0, 0, 0.4, -0.212636, 0.0669134, -0.299025)
+
+[node name="PedroElAreas" type="Area3D" parent="."]
+
+[node name="Anti_Wallhack" type="CollisionShape3D" parent="PedroElAreas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0663632, 0.0886135, 0.493272)
+shape = SubResource("BoxShape3D_vqkbh")
+
+[node name="Floater" type="CSGTorus3D" parent="PedroElAreas"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+inner_radius = 0.620842
+outer_radius = 1.28547
+
+[node name="Camera3D" type="Camera3D" parent="PedroElAreas/Floater"]
+transform = Transform3D(1.23333, 0, 0, 0, 1.22547, 0.139083, 0, -0.139083, 1.22547, -8.64267e-05, 2.07513, 6.68887)
+script = ExtResource("1_yaue3")
+
+[node name="Aim_Box" type="CSGBox3D" parent="PedroElAreas/Floater"]
+physics_interpolation_mode = 2
+editor_description = "This one is going to be the aim icon, its 3d so I can see the position of the crux in a 3d space "
+transform = Transform3D(1.66667, 0, 0, 0, 1.66667, 0, 0, 0, 1.66667, 0.0148137, 2.57847, -3.27472)
+cast_shadow = 0
+ignore_occlusion_culling = true
+gi_mode = 0
+script = ExtResource("2_ovn08")
+
+[node name="Paint_Emiter" type="Node3D" parent="PedroElAreas/Floater/Aim_Box"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 9.31322e-09, -2.20482, 2)
+script = ExtResource("3_esa6q")
+paint_scene = ExtResource("4_6p4li")
+
+[node name="Timer" type="Timer" parent="PedroElAreas/Floater/Aim_Box/Paint_Emiter"]
+wait_time = 0.25
+autostart = true
+
+[node name="Global_config" type="Node" parent="PedroElAreas/Floater/Aim_Box/Paint_Emiter"]
+script = ExtResource("5_jiunf")
+
+[node name="Burrow_zone" parent="PedroElAreas/Floater/Aim_Box/Paint_Emiter/Global_config" instance=ExtResource("6_5pbn7")]
+
+[connection signal="extra_box_pos" from="PedroElAreas/Floater/Camera3D" to="PedroElAreas/Floater/Aim_Box" method="_on_camera_3d_extra_box_pos"]
+[connection signal="timeout" from="PedroElAreas/Floater/Aim_Box/Paint_Emiter/Timer" to="PedroElAreas/Floater/Aim_Box/Paint_Emiter" method="_on_timer_timeout"]

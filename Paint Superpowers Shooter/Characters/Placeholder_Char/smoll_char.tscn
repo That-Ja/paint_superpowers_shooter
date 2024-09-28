@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://dox8vkvf5mtuk"]
+
+[ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/CharacterBody3D.gd" id="1_8e2xg"]
+[ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/Camera3D.gd" id="2_82ath"]
+[ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/aim_box.gd" id="3_oxava"]
+[ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/pink_ink.gd" id="4_sj5r5"]
+[ext_resource type="PackedScene" uid="uid://dthh0oakpok3h" path="res://Characters/Placeholder_Char/Files/paint_scene.tscn" id="5_sibeu"]
+[ext_resource type="Script" path="res://Code/config.gd" id="6_5gpkm"]
+[ext_resource type="PackedScene" uid="uid://u0kjhgekl4ly" path="res://Characters/Placeholder_Char/burrow_zone.tscn" id="7_0u13j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1tncp"]
+size = Vector3(1, 2.01514, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y6iq0"]
+size = Vector3(0.544022, 0.328552, 0.437744)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vqkbh"]
+size = Vector3(0.876865, 0.766724, 0.19841)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+editor_description = "Generic script for movement and physics. "
+script = ExtResource("1_8e2xg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(0.37, 0, 0, 0, 0.37, 0, 0, 0, 0.37, -0.00444412, 0.328871, -0.0175846)
+shape = SubResource("BoxShape3D_1tncp")
+
+[node name="Area3D" type="Area3D" parent="CharacterBody3D/CollisionShape3D"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.0022456, 0.00205481, -0.00111187)
+
+[node name="Smoll" type="CSGSphere3D" parent="CharacterBody3D/CollisionShape3D"]
+radial_segments = 6
+rings = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/CollisionShape3D/Smoll"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.0423737, 0.113556, -0.134731)
+shape = SubResource("BoxShape3D_y6iq0")
+
+[node name="Floater" type="CSGTorus3D" parent="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D"]
+transform = Transform3D(0.266667, 0, 0, 0, 0.266667, 0, 0, 0, 0.266667, -0.0148731, -0.037167, 0.0445398)
+inner_radius = 0.620842
+outer_radius = 1.28547
+
+[node name="Hand" type="CSGSphere3D" parent="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater"]
+transform = Transform3D(0.354729, 0, 0, 0, 0.25, 0, 0, 0, 1.35135, -0.715557, 0.22349, -1.00883)
+
+[node name="PedroElAreas" type="Area3D" parent="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater"]
+transform = Transform3D(3.37838, 0, 0, 0, 3.37838, 0, 0, 0, 3.37838, 0.00280701, -0.00256872, 0.00138984)
+
+[node name="Anti_Wallhack" type="CollisionShape3D" parent="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/PedroElAreas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.069951, 0.0416667, 0.484485)
+shape = SubResource("BoxShape3D_vqkbh")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater"]
+transform = Transform3D(3.37838, 0, 0, 0, 3.35683, 0.38098, 0, -0.38098, 3.35683, 0.00271942, 2.1006, 6.78064)
+script = ExtResource("2_82ath")
+
+[node name="Aim_Box" type="CSGBox3D" parent="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater"]
+physics_interpolation_mode = 2
+editor_description = "This one is going to be the aim icon, its 3d so I can see the position of the crux in a 3d space "
+transform = Transform3D(1.68919, 0, 0, 0, 1.68919, 0, 0, 0, 1.68919, 0.0178209, 2.61075, -3.31758)
+cast_shadow = 0
+ignore_occlusion_culling = true
+gi_mode = 0
+script = ExtResource("3_oxava")
+
+[node name="Paint_Emiter" type="Node3D" parent="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 9.31322e-09, -2.20482, 2)
+script = ExtResource("4_sj5r5")
+paint_scene = ExtResource("5_sibeu")
+
+[node name="Timer" type="Timer" parent="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box/Paint_Emiter"]
+wait_time = 0.25
+autostart = true
+
+[node name="Global_config" type="Node" parent="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box/Paint_Emiter"]
+script = ExtResource("6_5gpkm")
+
+[node name="Burrow_zone" parent="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box/Paint_Emiter/Global_config" instance=ExtResource("7_0u13j")]
+
+[connection signal="shooting_signal" from="CharacterBody3D" to="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box/Paint_Emiter" method="_on_character_body_3d_shooting_signal"]
+[connection signal="extra_box_pos" from="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Camera3D" to="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box" method="_on_camera_3d_extra_box_pos"]
+[connection signal="paint_stain_notifier" from="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box/Paint_Emiter" to="CharacterBody3D" method="_on_paint_emiter_paint_stain_notifier"]
+[connection signal="timeout" from="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box/Paint_Emiter/Timer" to="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box/Paint_Emiter" method="_on_timer_timeout"]
