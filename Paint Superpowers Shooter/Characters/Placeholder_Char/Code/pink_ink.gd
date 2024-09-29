@@ -8,7 +8,6 @@ var rng = RandomNumberGenerator.new()
 signal paint_stain_notifier(stain_notification)
 var stain_notification:bool = false
 func _ready():
-	$"../../../..".connect("shooting_signal", Callable(self, "_on_shooting_signal"))
 	Console.add_command("change_ink", calculus_comm,["uoi"],1, "This is a command what did you expect")
 func calculus_comm(param:String):
 	if param == "pink_col":

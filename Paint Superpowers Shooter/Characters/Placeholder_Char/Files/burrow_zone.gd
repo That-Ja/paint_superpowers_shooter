@@ -20,5 +20,5 @@ func _on_burrow_box_app_timeout():
 	burrow_recharge()
 	$Burrow_Box_app.start()
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	print("im connecting")

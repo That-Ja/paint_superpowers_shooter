@@ -22,13 +22,13 @@ func _ready():
 	#$"../..".connect("body_exited", Callable(self, "_on_body_exited"))
 
 # This function is called when another body enters the area
-func _on_pedro_el_areas_body_entered(body):
+func _on_pedro_el_areas_body_entered(_body):
 	on_touching_walls = true
 	#print("behind a wall owo!")
 	touching_something()
 
 # This function is called when another body exits the area
-func _on_pedro_el_areas_body_exited(body):
+func _on_pedro_el_areas_body_exited(_body):
 	on_touching_walls = false
 	# Move the camera when it exits the area
 	if not on_touching_walls:

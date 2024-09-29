@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Ungravity game"
+config/name="Ungravity game-bueno"
 run/main_scene="res://Maps/sm_sexy_map/Files/sexy_map.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://Assets/Textures/icon.svg"

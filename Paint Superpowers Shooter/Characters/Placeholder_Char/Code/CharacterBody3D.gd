@@ -17,8 +17,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var rotation_y = 0.0
 var current_speed = Speed  # Start with the lower speed
 var is_slow_falling:bool = false  # Track if slow fall is active
-var shoot_paint:bool= false
 signal shooting_signal(shoot_paint:float)
+var shoot_paint:bool= false
 var stain_notify:bool = false
 func _ready():
 	# Hide the mouse cursor and capture it
@@ -97,7 +97,3 @@ func _physics_process(delta):
 			shoot_paint = false
 			emit_signal("shooting_signal",shoot_paint)
 	move_and_slide()
-
-
-func _on_paint_emiter_paint_stain_notifier(stain_notification):
-	stain_notify = stain_notification
