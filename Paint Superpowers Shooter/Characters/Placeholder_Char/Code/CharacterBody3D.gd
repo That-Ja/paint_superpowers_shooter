@@ -34,12 +34,12 @@ func _input(event):
 
 func _physics_process(delta):
 	#Burrow
-	if Config.burrow_affect == true and Input.is_action_pressed("Burrowing"):
-		$CollisionShape3D/Char_main_body.transparency = 0
-		$CollisionShape3D/Char_main_body.collision_mask = false
-		$CollisionShape3D/Char_main_body/Aim_Box.visible = true
+	#if Config.burrow_affect == true and Input.is_action_pressed("Burrowing"):
+		#$CollisionShape3D/Char_main_body.transparency = 0
+		#$CollisionShape3D/Char_main_body.collision_mask = false
+		#$CollisionShape3D/Char_main_body/Aim_Box.visible = true
 		
-		print("Im burrowing")
+		#print("Im burrowing")
 	if Config.burrow_affect == false:
 		pass
 	 #Slow falling
