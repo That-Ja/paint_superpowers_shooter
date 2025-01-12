@@ -1,18 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://0d6106vbc6ec"]
+[gd_scene load_steps=3 format=3 uid="uid://0d6106vbc6ec"]
 
-[ext_resource type="Script" path="res://life_bar.gd" id="1_r3m2p"]
+[ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/life_bar.gd" id="1_r3m2p"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_r3vye"]
+font_size = 20
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 1143.0
-offset_bottom = 650.0
-
-[node name="Life_bar" type="TextureProgressBar" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ingame_ui" type="Node2D"]
 script = ExtResource("1_r3m2p")
 
-[node name="Shield_bar" type="TextureProgressBar" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Life_bar" type="ProgressBar" parent="."]
+offset_left = 30.0
+offset_top = 527.0
+offset_right = 581.0
+offset_bottom = 554.0
+show_percentage = false
+
+[node name="ShieldBar" type="ProgressBar" parent="."]
+offset_left = 591.0
+offset_top = 527.0
+offset_right = 811.0
+offset_bottom = 555.0
+max_value = 50.0
+show_percentage = false
+
+[node name="ShieldLabel" type="Label" parent="."]
+offset_left = 590.0
+offset_top = 525.0
+offset_right = 820.0
+offset_bottom = 560.0
+text = "hp text"
+label_settings = SubResource("LabelSettings_r3vye")
+
+[node name="HpLabel" type="Label" parent="."]
+offset_left = 34.0
+offset_top = 525.0
+offset_right = 578.0
+offset_bottom = 560.0
+text = "hp text"
+label_settings = SubResource("LabelSettings_r3vye")

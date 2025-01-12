@@ -6,12 +6,6 @@
 [node name="PaintEmitter" type="Node3D"]
 script = ExtResource("1_8bxwm")
 paint_scene = ExtResource("2_e6t26")
-speed_variance = null
-rotation_variance = null
-pink_col = null
-light_blue_col = null
-dark_blue_col = null
-emit = null
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25

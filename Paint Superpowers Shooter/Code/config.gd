@@ -17,3 +17,7 @@ var selected_color = pink_col
 var burrow_x = -999.0
 var burrow_y = -999.0
 var burrow_z = -9999.0
+#color percentage
+var trans_blue = 0
+var trans_red = 0
+var trans_green = 0

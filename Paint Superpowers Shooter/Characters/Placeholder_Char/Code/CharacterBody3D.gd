@@ -44,7 +44,7 @@ func _physics_process(delta):
 		pass
 	 #Slow falling
 	if not is_on_floor():
-		if Input.is_action_pressed("Ungravity") and is_slow_falling ==true and is_Spawning == false:
+		if Input.is_action_pressed("Ungravity") and is_slow_falling ==true and is_Spawning ==false:
 			if is_slow_falling ==true:
 				velocity.y = -ungravity_slow_specs
 			# Slow fall when jump is pressed and slow fall is active

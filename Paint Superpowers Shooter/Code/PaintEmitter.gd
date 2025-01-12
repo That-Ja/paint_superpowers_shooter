@@ -17,6 +17,10 @@ func calculus_comm(param:String):
 		$View.color = pink_col
 		material.albedo_color = $View.color
 		Console.print_line(str(param))
+	if param == "light_blue_col":
+		$View.color = pink_col
+		material.albedo_color = $View.color
+		Console.print_line(str(param))
 func _on_timer_timeout():
 	if emit:
 		var p = paint_scene.instantiate() as CharacterBody3D
