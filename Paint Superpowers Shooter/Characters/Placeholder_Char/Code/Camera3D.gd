@@ -37,7 +37,6 @@ func _on_pedro_el_areas_body_exited(_body):
 
 # Called every frame
 func _process(_delta):
-	
 	# Update the camera's rotation to match the parent's rotation
 	rotation = get_parent().rotation
 	if Input.is_action_pressed("Aim"):

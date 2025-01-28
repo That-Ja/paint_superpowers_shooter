@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dox8vkvf5mtuk"]
+[gd_scene load_steps=16 format=3 uid="uid://dox8vkvf5mtuk"]
 
 [ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/CharacterBody3D.gd" id="1_8e2xg"]
 [ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/Camera3D.gd" id="2_82ath"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://u0kjhgekl4ly" path="res://Characters/Placeholder_Char/burrow_zone.tscn" id="7_0u13j"]
 [ext_resource type="PackedScene" uid="uid://0d6106vbc6ec" path="res://Characters/Placeholder_Char/ingame_ui.tscn" id="8_7dfg8"]
 [ext_resource type="Script" path="res://Characters/Placeholder_Char/hub.gd" id="8_qrtmk"]
+[ext_resource type="Script" path="res://Characters/Placeholder_Char/char_related_commands.gd" id="10_e5dnb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1tncp"]
 size = Vector3(1, 2.01514, 1)
@@ -24,10 +25,17 @@ line_spacing = 1.915
 font_size = 20
 font_color = Color(0.592157, 0.364706, 0.768627, 1)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_sdk5e"]
+properties/0/path = NodePath("CharacterBody3D:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="Node3D" type="Node3D"]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+unique_name_in_owner = true
 editor_description = "Generic script for movement and physics. "
+collision_layer = 2
 script = ExtResource("1_8e2xg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
@@ -100,6 +108,12 @@ offset_bottom = 62.0
 text = "infomaton"
 label_settings = SubResource("LabelSettings_3npj4")
 script = ExtResource("8_qrtmk")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("10_e5dnb")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_sdk5e")
 
 [connection signal="shooting_signal" from="CharacterBody3D" to="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Aim_Box/Paint_Emiter" method="_on_character_body_3d_shooting_signal"]
 [connection signal="body_entered" from="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/PedroElAreas" to="CharacterBody3D/CollisionShape3D/Smoll/CollisionShape3D/Floater/Camera3D" method="_on_pedro_el_areas_body_entered"]

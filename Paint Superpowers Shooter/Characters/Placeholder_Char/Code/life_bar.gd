@@ -23,3 +23,4 @@ func func_bar_update_prwty_pls():
 	$Life_bar.max_value = max_hp
 	$HpLabel.text = str(actual_hp) + '/' + str(max_hp)
 	$ShieldLabel.text = str(shield_hp) + '/' + str(50.0)
+	#$Name.text = 

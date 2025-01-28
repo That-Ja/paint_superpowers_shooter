@@ -1,16 +1,18 @@
-[gd_scene load_steps=20 format=4 uid="uid://oriiaiww46s1"]
+[gd_scene load_steps=22 format=4 uid="uid://oriiaiww46s1"]
 
 [ext_resource type="Shader" uid="uid://danh4vvn53k8i" path="res://Maps/sm_sexy_map/Main.tres" id="1_i3bit"]
 [ext_resource type="Texture2D" uid="uid://ccd6owrn5o1xn" path="res://Code/test map_Untitled.png" id="2_fm0p4"]
 [ext_resource type="Script" path="res://Code/SetUVPositionMesh.gd" id="3_l3584"]
 [ext_resource type="Script" path="res://Code/DrawViewport.gd" id="4_gfc6p"]
-[ext_resource type="PackedScene" uid="uid://dox8vkvf5mtuk" path="res://Characters/Placeholder_Char/smoll_char.tscn" id="5_5llen"]
 [ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/Brush.gd" id="5_kw4e6"]
 [ext_resource type="Texture2D" uid="uid://d056rghsqdq6m" path="res://Assets/Textures/circle-64.png" id="6_85yvk"]
 [ext_resource type="Script" path="res://Code/commands.gd" id="7_mk18y"]
 [ext_resource type="Script" path="res://Maps/sm_sexy_map/Files/change_player.gd" id="9_ui5ng"]
 [ext_resource type="Script" path="res://Code/config.gd" id="10_434jv"]
 [ext_resource type="Script" path="res://Assets/Services/ScoreCalculator.gd" id="11_2jn5y"]
+[ext_resource type="Script" path="res://Assets/Services/multiplayer_menu.gd" id="11_b2y4j"]
+[ext_resource type="LabelSettings" uid="uid://b5v7x2supt2ds" path="res://Assets/Services/label_basic_menu_1.tres" id="12_38xeg"]
+[ext_resource type="Theme" uid="uid://bg2i0n2m33ku7" path="res://Assets/Services/button_ui_menu1.tres" id="13_djsah"]
 
 [sub_resource type="Environment" id="Environment_gqs1f"]
 background_mode = 1
@@ -97,15 +99,26 @@ shadow_mesh = SubResource("ArrayMesh_5l2y3")
 
 [node name="Main" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.877603, 1.09701, 2.6164)
+
+[node name="Marker3D" type="Marker3D" parent="Node3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.877603, 1.09701, 2.6164)
+fov = 121.5
+
+[node name="test map" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="test map"]
 environment = SubResource("Environment_gqs1f")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="test map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0381465, 2.72189, 1.29259)
 light_energy = 3.0
 omni_range = 9.96355
-
-[node name="test map" type="Node3D" parent="."]
 
 [node name="Plane" type="MeshInstance3D" parent="test map"]
 transform = Transform3D(2.91271, 0, 0, 0, 2.91271, 0, 0, 0, 2.91271, 0, 0, 0)
@@ -122,9 +135,6 @@ shape = SubResource("ConcavePolygonShape3D_41pai")
 transform = Transform3D(0.448394, 0, 0, 0, 0.448394, 0, 0, 0, 0.448394, -2.28448, 3.35706, -2.16125)
 mesh = SubResource("ArrayMesh_mphxl")
 skeleton = NodePath("")
-
-[node name="Node3D" parent="test map" instance=ExtResource("5_5llen")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.654881, 0)
 
 [node name="DrawViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -150,4 +160,55 @@ script = ExtResource("9_ui5ng")
 [node name="ScoreCalculator" type="Node" parent="Global_Config"]
 script = ExtResource("11_2jn5y")
 
+[node name="Multiplayer_menu" type="Node" parent="."]
+script = ExtResource("11_b2y4j")
+
+[node name="UI" type="CanvasLayer" parent="Multiplayer_menu"]
+
+[node name="Multiplayer" type="Control" parent="Multiplayer_menu/UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Multiplayer_menu/UI/Multiplayer"]
+layout_mode = 0
+offset_left = 51.0
+offset_right = 455.0
+offset_bottom = 219.0
+
+[node name="Label" type="Label" parent="Multiplayer_menu/UI/Multiplayer/VBoxContainer"]
+layout_mode = 2
+text = "Text.Example"
+label_settings = ExtResource("12_38xeg")
+
+[node name="Host" type="Button" parent="Multiplayer_menu/UI/Multiplayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("13_djsah")
+text = "Host"
+
+[node name="Join" type="Button" parent="Multiplayer_menu/UI/Multiplayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("13_djsah")
+text = "Join"
+
+[node name="LineEdit" type="LineEdit" parent="Multiplayer_menu/UI/Multiplayer/VBoxContainer/Join"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 152.0
+offset_right = 433.0
+offset_bottom = 223.0
+text = "Insert your name"
+placeholder_text = "No name"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Characters/Placeholder_Char/smoll_char.tscn")
+spawn_path = NodePath("../Multiplayer_menu")
+
 [connection signal="transf_blue_percent" from="Global_Config/ScoreCalculator" to="Global_Config" method="_on_score_calculator_transf_blue_percent"]
+[connection signal="pressed" from="Multiplayer_menu/UI/Multiplayer/VBoxContainer/Host" to="Multiplayer_menu" method="_on_host_pressed"]
+[connection signal="pressed" from="Multiplayer_menu/UI/Multiplayer/VBoxContainer/Join" to="Multiplayer_menu" method="_on_join_pressed"]

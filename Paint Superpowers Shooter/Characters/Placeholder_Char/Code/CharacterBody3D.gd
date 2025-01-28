@@ -20,11 +20,20 @@ var is_slow_falling:bool = false  # Track if slow fall is active
 signal shooting_signal(shoot_paint:float)
 var shoot_paint:bool= false
 var stain_notify:bool = false
+
+func _enter_tree():
+	$"..".set_multiplayer_authority(int(str($"..".name)))
+	if str($"..".name) =="1":
+		print("I'm the host, '" + str($"..".name) + "'!")
 func _ready():
+	if !is_multiplayer_authority():
+		return
 	# Hide the mouse cursor and capture it
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
+	if !is_multiplayer_authority():
+		return
 	# Check if the event is a mouse motion event
 	if event is InputEventMouseMotion:
 		if is_mouse_showing !=true:
@@ -33,6 +42,8 @@ func _input(event):
 			rotation = Vector3(0, rotation_y, 0)
 
 func _physics_process(delta):
+	if !is_multiplayer_authority():
+		return
 	#Burrow
 	#if Config.burrow_affect == true and Input.is_action_pressed("Burrowing"):
 		#$CollisionShape3D/Char_main_body.transparency = 0
@@ -59,7 +70,7 @@ func _physics_process(delta):
 			# Normal fall (with gravity) when not slow falling
 			velocity.y -= gravity * delta
 # Handle jump reset
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		# Start the jump and enable slow fall
 		current_speed = min(current_speed + Acceleration * delta, Max_speed)
 		velocity.y = clamp((Jump_Velocity * (current_speed/pow(69, 1.0 / 3.0)))* sqrt(1),Speed,10)

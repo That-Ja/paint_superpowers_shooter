@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://0d6106vbc6ec"]
+[gd_scene load_steps=4 format=3 uid="uid://0d6106vbc6ec"]
 
 [ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/life_bar.gd" id="1_r3m2p"]
+[ext_resource type="LabelSettings" uid="uid://c5wao33a66nk4" path="res://Characters/Placeholder_Char/Files/ingame_ui.tres" id="2_rmhnw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_r3vye"]
 font_size = 20
@@ -38,3 +39,11 @@ offset_right = 578.0
 offset_bottom = 560.0
 text = "hp text"
 label_settings = SubResource("LabelSettings_r3vye")
+
+[node name="Name" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 36.0
+offset_right = 154.0
+offset_bottom = 75.0
+text = "Name"
+label_settings = ExtResource("2_rmhnw")
