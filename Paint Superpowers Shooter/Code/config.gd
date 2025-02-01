@@ -1,5 +1,6 @@
 extends Node
 
+var player_name :String = ""
 var total_hp = 100
 var max_hp = 100
 var shield_hp = 50

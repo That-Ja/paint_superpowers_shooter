@@ -1,14 +1,14 @@
 extends Node
-var blue_score :=0
-var red_score :=0
-var green_score :=0
+@export var blue_score :=0
+@export var red_score :=0
+@export var green_score :=0
 var thread: Thread
 var semaphore: Semaphore
 var mutex: Mutex
 var exit := false
 var paint_texture: ViewportTexture
 
-signal transf_blue_percent (blue_score)
+#signal transf_blue_percent (blue_score)
 var plane
 
 #Calculating which colors has the pixel, then give it an score
@@ -53,8 +53,8 @@ func _thread_calculate_score():
 				if pixel.g >= 0.5:
 					green_pixels += 1
 		mutex.lock()
-		blue_score = floor(blue_pixels/1000)
-		red_score = floor(red_pixels/1000)
+		blue_score = floor(float(blue_pixels)/1000)
+		red_score = floor(float(red_pixels)/1000)
 		print ('red: ' + str(red_pixels)+ ', blue: ' + str(blue_pixels)+', green: ' + str(green_pixels))
 		Config.trans_blue = blue_score
 		Config.trans_red = red_score

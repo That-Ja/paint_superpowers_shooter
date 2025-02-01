@@ -8,15 +8,18 @@ var aim_stop:bool = true
 var Mouse_Sensitivity:float = Config.Mouse_Sens
 var vertical_motion
 var Hold_Ver_Mot = 0
-signal extra_box_pos()
+#  DONT LOOK AT THIS ------> signal extra_box_pos()
 var extra_box_y:float = 0
 var extra_box_x:float = 0
 var extra_box_z:float = 0
 func _ready():
+	if !is_multiplayer_authority():
+		return
 	# Save the initial position of the camera
 	myself_positionX_save = self.position.x
 	myself_positionY_save = self.position.y
 	myself_positionZ_save = self.position.z
+	make_current()
 	# Connect the signal for when a body enters or exits
 	#$"../..".connect("body_entered", Callable(self, "_on_body_entered"))
 	#$"../..".connect("body_exited", Callable(self, "_on_body_exited"))
@@ -37,6 +40,8 @@ func _on_pedro_el_areas_body_exited(_body):
 
 # Called every frame
 func _process(_delta):
+	if !is_multiplayer_authority():
+		return
 	# Update the camera's rotation to match the parent's rotation
 	rotation = get_parent().rotation
 	if Input.is_action_pressed("Aim"):
@@ -55,7 +60,7 @@ func _input(event):
 			extra_box_x = 0
 			extra_box_y = 0.06
 			extra_box_z = 0.002
-			emit_signal("extra_box_pos",extra_box_x,extra_box_y,extra_box_z)
+			#emit_signal("extra_box_pos",extra_box_x,extra_box_y,extra_box_z)
 			self.position = Vector3(self.position.x,self.position.y+((0.05+Mouse_Sensitivity)/sqrt(2)), self.position.z)
 			Hold_Ver_Mot += 1
 			#print("Up "+str(Hold_Ver_Mot))
@@ -63,7 +68,7 @@ func _input(event):
 			extra_box_x = 0
 			extra_box_y = -0.06
 			extra_box_z = -0.002
-			emit_signal("extra_box_pos",extra_box_x,extra_box_y,extra_box_z)
+			#emit_signal("extra_box_pos",extra_box_x,extra_box_y,extra_box_z)
 			self.position = Vector3(self.position.x, self.position.y-((0.05+Mouse_Sensitivity)/sqrt(2)), self.position.z)
 			Hold_Ver_Mot -= 1
 			clamp(0,-10,10)

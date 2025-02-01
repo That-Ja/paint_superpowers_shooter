@@ -1,14 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://1n2i6ndhxoik"]
+[gd_scene load_steps=4 format=3 uid="uid://1n2i6ndhxoik"]
 
 [ext_resource type="Script" path="res://Code/PaintEmitter.gd" id="1_8bxwm"]
 [ext_resource type="PackedScene" uid="uid://dthh0oakpok3h" path="res://Characters/Placeholder_Char/Files/paint_scene.tscn" id="2_e6t26"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qs2ra"]
+properties/0/path = NodePath("Timer:wait_time")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Timer:process_callback")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="PaintEmitter" type="Node3D"]
 script = ExtResource("1_8bxwm")
 paint_scene = ExtResource("2_e6t26")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.25
 autostart = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_qs2ra")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

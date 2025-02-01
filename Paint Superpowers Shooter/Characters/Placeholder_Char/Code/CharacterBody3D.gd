@@ -17,6 +17,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var rotation_y = 0.0
 var current_speed = Speed  # Start with the lower speed
 var is_slow_falling:bool = false  # Track if slow fall is active
+@warning_ignore("unused_signal")
 signal shooting_signal(shoot_paint:float)
 var shoot_paint:bool= false
 var stain_notify:bool = false
@@ -55,8 +56,8 @@ func _physics_process(delta):
 		pass
 	 #Slow falling
 	if not is_on_floor():
-		if Input.is_action_pressed("Ungravity") and is_slow_falling ==true and is_Spawning ==false:
-			if is_slow_falling ==true:
+		if Input.is_action_pressed("Ungravity") and is_slow_falling and not is_Spawning:
+			if is_slow_falling:
 				velocity.y = -ungravity_slow_specs
 			# Slow fall when jump is pressed and slow fall is active
 			gravity = (gravity / Fall_Slowdown_Rate) * delta
@@ -91,7 +92,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, Speed)
 		velocity.z = move_toward(velocity.z, 0, Speed)
 	if Input.is_action_just_released("ui_cancel"):
-		if is_mouse_showing != true:
+		if not is_mouse_showing:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			is_mouse_showing = true
 			#print("Moussy Wakie")

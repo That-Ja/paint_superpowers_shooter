@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dthh0oakpok3h"]
+[gd_scene load_steps=8 format=3 uid="uid://dthh0oakpok3h"]
 
 [ext_resource type="Script" path="res://Code/Paint.gd" id="1_p32mp"]
 
@@ -28,6 +28,14 @@ _data = {
 "Scale": SubResource("Animation_53qid")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_occm2"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Paint" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_p32mp")
@@ -45,3 +53,6 @@ root_node = NodePath("../CollisionShape3D")
 libraries = {
 "": SubResource("AnimationLibrary_7yd0l")
 }
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_occm2")
