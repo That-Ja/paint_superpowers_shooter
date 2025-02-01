@@ -11,6 +11,7 @@ func _ready():
 	if !is_multiplayer_authority():
 		return
 	if Config.player_name !="":
+		$Name.text = Config.player_name
 		return
 	var male_random_names :Array = ['Patrick','Danny','Russel','Freddie','Clyde',
 	'Wesley','Michael','Todd','Benjamin','Tom','Herbert','Bernand','Matthew','Vicent']

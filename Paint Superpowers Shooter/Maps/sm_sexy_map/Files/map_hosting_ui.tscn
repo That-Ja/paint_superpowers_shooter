@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnwxra6il2tjb"]
+
+[ext_resource type="LabelSettings" uid="uid://b5v7x2supt2ds" path="res://Assets/Services/label_basic_menu_1.tres" id="1_8yysp"]
+[ext_resource type="Theme" uid="uid://bg2i0n2m33ku7" path="res://Assets/Services/button_ui_menu1.tres" id="2_013rf"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Multiplayer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Multiplayer"]
+layout_mode = 0
+offset_left = 51.0
+offset_right = 455.0
+offset_bottom = 219.0
+
+[node name="Label" type="Label" parent="Multiplayer/VBoxContainer"]
+layout_mode = 2
+text = "Text.Example"
+label_settings = ExtResource("1_8yysp")
+
+[node name="Host" type="Button" parent="Multiplayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_013rf")
+text = "Host"
+
+[node name="Join" type="Button" parent="Multiplayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_013rf")
+text = "Join"
+
+[node name="EditName" type="LineEdit" parent="Multiplayer/VBoxContainer/Join"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 152.0
+offset_right = 433.0
+offset_bottom = 223.0
+placeholder_text = "Insert your name"
