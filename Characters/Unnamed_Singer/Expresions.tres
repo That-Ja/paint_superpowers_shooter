@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://sh0qrlvk34v3"]
+
+[ext_resource type="Texture2D" uid="uid://nh12wxrcngst" path="res://Characters/Unnamed_Singer/unamed singer_Untitled_2.png" id="1_7i33o"]
+[ext_resource type="Texture2D" uid="uid://ws4ugitdpews" path="res://Characters/Unnamed_Singer/unamed singer_Untitled_3.png" id="2_8dggs"]
+
+[resource]
+resource_name = "Expresions"
+cull_mode = 2
+albedo_texture = ExtResource("1_7i33o")
+metallic = 1.0
+metallic_texture = ExtResource("2_8dggs")
+metallic_texture_channel = 2
+roughness = 0.5
+roughness_texture = ExtResource("2_8dggs")
+roughness_texture_channel = 1

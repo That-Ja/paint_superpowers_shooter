@@ -1,0 +1,52 @@
+extends Node3D
+#Code for spawning a bullet on the floor, right down, on the character feet. The look is similar to a bomb. 
+@export var paint_scene: PackedScene
+@export var speed_variance: float = 1.0
+@export var rotation_variance: float = 5.0
+@export var emit := false
+
+var rng = RandomNumberGenerator.new()
+
+func _ready():
+	Console.add_command("change_ink", calculus_comm, ["uoi"], 1, "This is a command what did you expect")
+	rng.randomize()
+
+func calculus_comm(param: String):
+	if param == "pink_col":
+		Config.selected_color = Config.pink_col
+		Console.print_line(str(param))
+	if param == "light_blue_col":
+		Config.selected_color = Config.light_blue_col
+		Console.print_line(str(param))
+
+func _on_character_body_3d_shooting_signal(shooting_paint):
+	emit = shooting_paint
+
+func _on_timer_timeout():
+	if emit:
+		if is_multiplayer_authority():  # Only the host decides when to spawn bullets
+			# Generate random values on the host and send them to peers
+			var random_speed = rng.randf_range(0.0, speed_variance)
+			var random_x_rot = rng.randf_range(-rotation_variance, rotation_variance)
+			var random_y_rot = rng.randf_range(-rotation_variance, rotation_variance)
+			var downward_vel = -rng.randf_range(1.0, 3.0)
+			
+			# Spawn locally and tell peers to spawn with the same parameters
+			spawn_bullet(random_speed, random_x_rot, random_y_rot, downward_vel)
+			rpc("spawn_bullet", random_speed, random_x_rot, random_y_rot, downward_vel)
+
+@rpc("any_peer", "call_local", "reliable")
+func spawn_bullet(random_speed: float, random_x_rot: float, random_y_rot: float, downward_vel: float):
+	var p = paint_scene.instantiate() as CharacterBody3D
+	add_child(p, true)  # Set "owner" to this node for proper scene replication
+	
+	# Set position and rotation
+	p.global_position = global_position
+	p.rotate_x(deg_to_rad(random_x_rot))
+	p.rotate_y(deg_to_rad(random_y_rot))
+	
+	# Set velocity (replicated across peers)
+	var forward_vector = -p.global_transform.basis.z
+	forward_vector.y = 0
+	forward_vector = forward_vector.normalized()
+	p.velocity = forward_vector * (p.speed + random_speed) + Vector3(0, downward_vel, 0)
