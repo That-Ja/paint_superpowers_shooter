@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://b1qorehmh8mqt"]
+
+[ext_resource type="Texture2D" uid="uid://bj1uvy4pimcjq" path="res://Characters/Unnamed_Singer/unamed singer_Untitled.png" id="1_fftjd"]
+[ext_resource type="Texture2D" uid="uid://bk43h27tmfvok" path="res://Characters/Unnamed_Singer/unamed singer_Untitled_1.png" id="2_3mdea"]
+
+[resource]
+resource_name = "Body"
+cull_mode = 2
+albedo_color = Color(1, 0, 1, 1)
+albedo_texture = ExtResource("1_fftjd")
+metallic = 0.16
+metallic_specular = 0.34
+roughness = 0.53
+roughness_texture = ExtResource("2_3mdea")
+roughness_texture_channel = 1

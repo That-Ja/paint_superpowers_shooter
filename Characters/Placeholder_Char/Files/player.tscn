@@ -1,0 +1,101 @@
+[gd_scene load_steps=11 format=3 uid="uid://cq1mlohdvhi0h"]
+
+[ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/CharacterBody3D.gd" id="1_my2w2"]
+[ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/Camera3D.gd" id="2_r6xiq"]
+[ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/pink_ink.gd" id="3_gwpt4"]
+[ext_resource type="Script" path="res://Characters/Placeholder_Char/Code/aim_box.gd" id="3_lbthl"]
+[ext_resource type="PackedScene" uid="uid://dthh0oakpok3h" path="res://Characters/Placeholder_Char/Files/paint_scene.tscn" id="4_2yhj6"]
+[ext_resource type="Script" path="res://Code/config.gd" id="6_aljja"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y6iq0"]
+size = Vector3(0.544022, 0.328552, 0.437744)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1tncp"]
+size = Vector3(1, 2.01514, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vqkbh"]
+size = Vector3(0.303848, 0.636963, 0.19841)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_sto51"]
+properties/0/path = NodePath("CharacterBody3D:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("CharacterBody3D:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+editor_description = "Generic script for movement and physics. "
+script = ExtResource("1_my2w2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1.11, 0, 0, 0, 1.11, 0, 0, 0, 1.11, 0.0112341, 0.370887, -0.0674351)
+shape = SubResource("BoxShape3D_y6iq0")
+
+[node name="BigHitbox" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(0.37, 0, 0, 0, 0.37, 0, 0, 0, 0.37, -0.00444412, 0.328871, -0.0175846)
+shape = SubResource("BoxShape3D_1tncp")
+
+[node name="Area3D" type="Area3D" parent="CharacterBody3D/BigHitbox"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.0022456, 0.00205481, -0.00111187)
+
+[node name="Smoll" type="CSGSphere3D" parent="CharacterBody3D/BigHitbox"]
+radial_segments = 6
+rings = 5
+
+[node name="Floater" type="CSGTorus3D" parent="CharacterBody3D/BigHitbox/Smoll"]
+transform = Transform3D(0.800001, 0, 0, 0, 0.800001, 0, 0, 0, 0.800001, -0.00224561, 0.00205499, -0.0011116)
+inner_radius = 0.620842
+outer_radius = 1.28547
+
+[node name="Char_main_body" type="CSGCylinder3D" parent="CharacterBody3D/BigHitbox"]
+transform = Transform3D(2.7027, 0, 0, 0, 2.7027, 0, 0, 0, 2.7027, 0, 0, 0)
+radius = 0.154
+height = 0.75
+
+[node name="Hand" type="CSGSphere3D" parent="CharacterBody3D/BigHitbox/Char_main_body"]
+transform = Transform3D(0.105, 0, 0, 0, 0.0740001, 0, 0, 0, 0.4, -0.212636, 0.0669134, -0.299025)
+
+[node name="PedroElAreas" type="Area3D" parent="CharacterBody3D/BigHitbox/Char_main_body"]
+
+[node name="Anti_Wallhack" type="CollisionShape3D" parent="CharacterBody3D/BigHitbox/Char_main_body/PedroElAreas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0663632, 0.0886135, 0.493272)
+shape = SubResource("BoxShape3D_vqkbh")
+
+[node name="Floater" type="CSGTorus3D" parent="CharacterBody3D/BigHitbox/Char_main_body/PedroElAreas"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+inner_radius = 0.620842
+outer_radius = 1.28547
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/BigHitbox/Char_main_body"]
+transform = Transform3D(1, 0, 0, 0, 0.993621, 0.11277, 0, -0.11277, 0.993621, -2.5928e-05, 0.622539, 2.00666)
+script = ExtResource("2_r6xiq")
+
+[node name="Aim_Box" type="CSGBox3D" parent="CharacterBody3D/BigHitbox/Char_main_body"]
+physics_interpolation_mode = 2
+editor_description = "This one is going to be the aim icon, its 3d so I can see the position of the crux in a 3d space "
+transform = Transform3D(0.500001, 0, 0, 0, 0.500001, 0, 0, 0, 0.500001, 0.00444412, 0.773542, -0.982416)
+cast_shadow = 0
+ignore_occlusion_culling = true
+gi_mode = 0
+script = ExtResource("3_lbthl")
+
+[node name="Paint_Emiter" type="Node3D" parent="CharacterBody3D/BigHitbox/Char_main_body/Aim_Box"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 9.31322e-09, -2.20482, 2)
+script = ExtResource("3_gwpt4")
+paint_scene = ExtResource("4_2yhj6")
+
+[node name="Timer" type="Timer" parent="CharacterBody3D/BigHitbox/Char_main_body/Aim_Box/Paint_Emiter"]
+wait_time = 0.25
+autostart = true
+
+[node name="Global_config" type="Node" parent="CharacterBody3D/BigHitbox/Char_main_body/Aim_Box/Paint_Emiter"]
+script = ExtResource("6_aljja")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_sto51")
+
+[connection signal="shooting_signal" from="CharacterBody3D" to="CharacterBody3D/BigHitbox/Char_main_body/Aim_Box/Paint_Emiter" method="_on_character_body_3d_shooting_signal"]
+[connection signal="timeout" from="CharacterBody3D/BigHitbox/Char_main_body/Aim_Box/Paint_Emiter/Timer" to="CharacterBody3D/BigHitbox/Char_main_body/Aim_Box/Paint_Emiter" method="_on_timer_timeout"]

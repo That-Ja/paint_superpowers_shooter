@@ -1,0 +1,172 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://dudem4c76m4p3"
+path="res://.godot/imported/unamed singer.glb-c842bcafbba38b75c08ba74c895902b6.scn"
+
+[deps]
+
+source_file="res://Characters/Unnamed_Singer/unamed singer.glb"
+dest_files=["res://.godot/imported/unamed singer.glb-c842bcafbba38b75c08ba74c895902b6.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"Body": {
+"use_external/enabled": true,
+"use_external/path": "res://Characters/Unnamed_Singer/Body.tres"
+},
+"Elegant": {
+"use_external/enabled": true,
+"use_external/path": "res://Characters/Unnamed_Singer/Elegant.tres"
+},
+"Expresions": {
+"use_external/enabled": true,
+"use_external/path": "res://Characters/Unnamed_Singer/Expresions.tres"
+},
+"Eyelashes": {
+"use_external/enabled": true,
+"use_external/path": "res://Characters/Unnamed_Singer/Eyelashes.tres"
+},
+"Fem_clothes": {
+"use_external/enabled": true,
+"use_external/path": "res://Characters/Unnamed_Singer/Fem_clothes.tres"
+},
+"Fem_clothes.001": {
+"use_external/enabled": true,
+"use_external/path": "res://Characters/Unnamed_Singer/Fem_clothes.001.tres"
+},
+"Fem_clothes.002": {
+"use_external/enabled": true,
+"use_external/path": "res://Characters/Unnamed_Singer/Fem_clothes.002.tres"
+},
+"Mouth": {
+"use_external/enabled": true,
+"use_external/path": "res://Characters/Unnamed_Singer/Mouth.tres"
+}
+},
+"meshes": {
+"unamed singer_Cube": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Characters/Unnamed_Singer/unamed singer_Cube.res"
+},
+"unamed singer_Cube_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Characters/Unnamed_Singer/unamed singer_Cube_001.res"
+},
+"unamed singer_Cube_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Characters/Unnamed_Singer/unamed singer_Cube_002.res"
+},
+"unamed singer_Cube_004": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Characters/Unnamed_Singer/unamed singer_Cube_004.res"
+},
+"unamed singer_Cube_005": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Characters/Unnamed_Singer/unamed singer_Cube_005.res"
+},
+"unamed singer_Cube_007": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Characters/Unnamed_Singer/unamed singer_Cube_007.res"
+},
+"unamed singer_Cube_008": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Characters/Unnamed_Singer/unamed singer_Cube_008.res"
+},
+"unamed singer_Cube_009": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Characters/Unnamed_Singer/unamed singer_Cube_009.res"
+},
+"unamed singer_Cube_011": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Characters/Unnamed_Singer/unamed singer_Cube_011.res"
+},
+"unamed singer_Plane": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Characters/Unnamed_Singer/unamed singer_Plane.res"
+},
+"unamed singer_Plane_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Characters/Unnamed_Singer/unamed singer_Plane_001.res"
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1
