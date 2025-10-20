@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://wqrs3qjwkpdn"]
+
+[ext_resource type="Script" path="res://Assets/Services/multiplayer_menu.gd" id="1_s5p6k"]
+[ext_resource type="LabelSettings" uid="uid://b5v7x2supt2ds" path="res://Assets/Services/label_basic_menu_1.tres" id="1_x8qu3"]
+[ext_resource type="Theme" uid="uid://bg2i0n2m33ku7" path="res://Assets/Services/button_ui_menu1.tres" id="2_pvgx3"]
+
+[node name="Multiplayer_menu" type="Node"]
+script = ExtResource("1_s5p6k")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Multiplayer" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Multiplayer"]
+layout_mode = 0
+offset_left = 51.0
+offset_right = 455.0
+offset_bottom = 219.0
+
+[node name="Label" type="Label" parent="UI/Multiplayer/VBoxContainer"]
+layout_mode = 2
+text = "Text.Example"
+label_settings = ExtResource("1_x8qu3")
+
+[node name="Host" type="Button" parent="UI/Multiplayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_pvgx3")
+text = "Host"
+
+[node name="Join" type="Button" parent="UI/Multiplayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_pvgx3")
+text = "Join"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Characters/Placeholder_Char/smoll_char.tscn", "res://Maps/sm_sexy_map/Files/sexy_map.tscn")
+spawn_path = NodePath("..")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+offset_left = 67.0
+offset_top = 266.0
+offset_right = 460.0
+offset_bottom = 328.0
+text = "Insert your name"
+
+[connection signal="pressed" from="UI/Multiplayer/VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="UI/Multiplayer/VBoxContainer/Join" to="." method="_on_join_pressed"]

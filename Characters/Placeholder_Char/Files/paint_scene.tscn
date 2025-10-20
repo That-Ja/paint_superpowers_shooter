@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://dthh0oakpok3h"]
+
+[ext_resource type="Script" path="res://Code/Paint.gd" id="1_p32mp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nb8af"]
+albedo_color = Color(0.192084, 0.280957, 0.830227, 1)
+metallic = 0.12
+metallic_specular = 0.58
+roughness = 0.57
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_quy32"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iwuj1"]
+
+[sub_resource type="Animation" id="Animation_53qid"]
+resource_name = "Scale"
+length = 2.0
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../View")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.309449, 0.477654, 0.398801, 0.6, 1, 0.619677, 1.05149, 0.568105)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7yd0l"]
+_data = {
+"Scale": SubResource("Animation_53qid")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_occm2"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:speed")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="Paint" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_p32mp")
+
+[node name="View" type="MeshInstance3D" parent="."]
+transform = Transform3D(-7.52664e-09, -0.0914867, 0, 0.17219, -3.99901e-09, 0, 0, 0, -0.384403, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_nb8af")
+mesh = SubResource("CapsuleMesh_quy32")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_iwuj1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CollisionShape3D")
+libraries = {
+"": SubResource("AnimationLibrary_7yd0l")
+}
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_occm2")

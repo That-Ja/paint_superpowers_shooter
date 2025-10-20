@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfoovcehrqxnk"]
+
+[ext_resource type="PackedScene" uid="uid://dudem4c76m4p3" path="res://Characters/Unnamed_Singer/unamed singer.glb" id="1_o1s3f"]
+
+[node name="unamed singer" instance=ExtResource("1_o1s3f")]

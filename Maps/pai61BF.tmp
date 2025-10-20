@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dthh0oakpok3h"]
+
+[ext_resource type="Script" path="res://Code/Paint.gd" id="1_6ftwa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nb8af"]
+albedo_color = Color(0.779684, 0.00642459, 0.327631, 1)
+metallic = 0.12
+metallic_specular = 0.58
+roughness = 0.57
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_quy32"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iwuj1"]
+
+[sub_resource type="Animation" id="Animation_53qid"]
+resource_name = "Scale"
+length = 2.0
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../View")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.309449, 0.477654, 0.398801, 0.6, 1, 0.619677, 1.05149, 0.568105)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7yd0l"]
+_data = {
+"Scale": SubResource("Animation_53qid")
+}
+
+[node name="Paint" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_6ftwa")
+color = Color(0.780392, 0.00784314, 0.329412, 1)
+
+[node name="View" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.70869e-08, -1.05149, 0, 0.619677, -4.59619e-08, 0, 0, 0, 0.568105, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_nb8af")
+mesh = SubResource("CapsuleMesh_quy32")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_iwuj1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CollisionShape3D")
+libraries = {
+"": SubResource("AnimationLibrary_7yd0l")
+}

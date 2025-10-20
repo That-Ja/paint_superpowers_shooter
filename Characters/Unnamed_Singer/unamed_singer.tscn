@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://doys6g37cutnk"]
+
+[ext_resource type="PackedScene" uid="uid://dudem4c76m4p3" path="res://Characters/Unnamed_Singer/unamed singer.glb" id="1_2i5lg"]
+
+[node name="unamed singer" instance=ExtResource("1_2i5lg")]
+
+[node name="femboy_t-shirt" parent="Armature/Skeleton3D" index="8"]
+visible = false

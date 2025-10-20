@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bs8d2f87ocnf8"]
+
+[ext_resource type="Texture2D" uid="uid://nh12wxrcngst" path="res://Characters/Unnamed_Singer/unamed singer_Untitled_2.png" id="1_tyayr"]
+[ext_resource type="Texture2D" uid="uid://ws4ugitdpews" path="res://Characters/Unnamed_Singer/unamed singer_Untitled_3.png" id="2_cy3sh"]
+
+[resource]
+resource_name = "Mouth"
+cull_mode = 2
+albedo_texture = ExtResource("1_tyayr")
+metallic = 1.0
+metallic_texture = ExtResource("2_cy3sh")
+metallic_texture_channel = 2
+roughness = 0.5
+roughness_texture = ExtResource("2_cy3sh")
+roughness_texture_channel = 1

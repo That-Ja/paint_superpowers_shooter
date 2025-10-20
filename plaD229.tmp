@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw4bxesuy662f"]
+
+[ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_isfa7"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="2_klgda"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_may6c"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_isfa7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(0.37, 0, 0, 0, 0.37, 0, 0, 0, 0.37, 0, 0.0140373, 0)
+shape = SubResource("CylinderShape3D_may6c")
+
+[node name="Gollow" type="CSGCylinder3D" parent="CharacterBody3D/CollisionShape3D"]
+transform = Transform3D(2.7027, 0, 0, 0, 2.7027, 0, 0, 0, 2.7027, 7.00757e-05, -0.0317773, 2.44862e-05)
+radius = 0.154
+height = 0.75
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/CollisionShape3D/Gollow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5928e-05, -0.00227964, 1.99999)
+script = ExtResource("2_klgda")
